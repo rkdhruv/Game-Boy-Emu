@@ -32,6 +32,24 @@ namespace gb {
             return h * 256 + l;
         }
 
+        bool flag_z() const {
+            return ((f & 0x80) != 0);
+        }
+
+        bool flag_n() const {
+            return ((f & 0x40) != 0);
+        }
+
+        bool flag_h() const {
+            return ((f & 0x20) != 0);
+        }
+
+        bool flag_c() const {
+            return ((f & 0x10) != 0);
+        }
+
+
+
         // Setter functions
         void set_af(uint16_t af) {
             a = static_cast<uint8_t>(af / 256);
@@ -52,5 +70,38 @@ namespace gb {
             h = static_cast<uint8_t>(hl / 256);
             l = static_cast<uint8_t>(hl % 256);
         }
+
+        void set_z(bool set) {
+            if(set) {
+                f = (f | 0x80) & 0xF0;
+            } else {
+                f = f & 0x70;
+            }
+        }
+
+        void set_n(bool set) {
+            if(set) {
+                f = (f | 0x40) & 0xF0;
+            } else {
+                f = f & 0xB0;
+            }
+        }
+
+        void set_h(bool set) {
+            if(set) {
+                f = (f | 0x20) & 0xF0;
+            } else {
+                f = f & 0xD0;
+            }
+        }
+
+        void set_c(bool set) {
+            if(set) {
+                f = (f | 0x10) & 0xF0;
+            } else {
+                f = f & 0xE0;
+            }
+        }
+
     };
 } // namespace gb
