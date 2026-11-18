@@ -24,7 +24,7 @@ FetchContent_Declare(googletest
 FetchContent_MakeAvailable(googletest)
 
 enable_testing()
-add_executable(gb_tests tests/test_registers.cpp)
+add_executable(gb_tests tests/test_registers.cpp tests/test_bus.cpp)
 target_link_libraries(gb_tests PRIVATE gb_core GTest::gtest_main)
 include(GoogleTest)
 gtest_discover_tests(gb_tests)
